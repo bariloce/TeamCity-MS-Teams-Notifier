@@ -4,11 +4,10 @@
   <info>
     <name>Microsoft Teams Notifier</name>
     <display-name>Microsoft Teams Notifier</display-name>
-    <!-- <description>Some description goes here</description> -->
-    <version>0.0.1</version>
+    <version>1.0.5</version>
     <vendor>
-      <name>Tyler Evert</name>
-      <url>http://thefoxgang.com/</url>
+      <name>Marek Barilla</name>
+      <url>http://creditinfo.com/</url>
     </vendor>
   </info>
   <deployment use-separate-classloader="true" /> <!-- load server plugin's classes in separate classloader-->

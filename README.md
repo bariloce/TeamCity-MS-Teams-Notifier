@@ -3,7 +3,7 @@ TeamCity-MicrosoftTeams-Notifier
 
 A fun TeamCity MS Teams Notifier for sending build server notifications to a Teams channel, using colours and emoticons and customisable notification messages.
 
-This plugin used the Hipchat notifier plugin as a starting point: https://github.com/parautenbach/TeamCity-HipChat-Notifier
+This plugin used the Hipchat notifier plugin as a starting point: https://github.com/parautenbach/TeamCity-HipChat-Notifier and forked from https://github.com/tevert/TeamCity-MS-Teams-Notifier
 
 Screenshots TODO
 
@@ -20,7 +20,6 @@ Configuration TODO
 * This is an Eclipse project.
 * Clone the repository and set the `teamcity.home` property in the `build.xml` to your TeamCity server's home directory (Windows users, use forward slashes in the path, e.g. `C:/TeamCity`).
 * To open the project in Eclipse go to _File -> Import -> General -> Existing Projects into Workspace -> Select root directory_. Navigate to the folder with the cloned source code. You can consider to use the Mylyn Github connector for Eclipse.
-* Set the `TEAMCITY_HOME` classpath variable under Eclipse preferences to the same location as above.
 * Check that Eclipse knows where to find a JDK (under Installed JREs in the Java section of Eclipse preferences).
 * On Windows make sure that you have `JAVA_HOME` variable set to where your JDK is installed, e.g. `C:\Program Files\Java\jdk1.7.0_51`.
 * To release the project as a TeamCity plugin right click on `build.xml` and select _Run As -> 2 Ant Build_. Check the release target and run. The plugin package will be created under a `build` folder.
@@ -38,6 +37,26 @@ For debugging, add the snippets in teamcity-server-log4j.xml in this project's r
 Roadmap TODO
 
 # Change log
+
+## Version 1.0.5
+* update references
+* added built plugin to repo
+
+## Version 1.0.4
+* small refactoring
+* fix minor issues
+
+## Version 1.0.3
+* refactoring
+
+## Version 1.0.2
+* fixed Emoticons
+
+## Version 1.0.1
+* refactoring, build settings, tests
+
+## Version 1.0.0
+* Adapted source from forked Hipchat plugin - working version of MSTeams plugin (https://github.com/tevert/TeamCity-MS-Teams-Notifier)
 
 ## Version 0.0.1
 * Adapted source from Hipchat plugin (https://github.com/parautenbach/TeamCity-HipChat-Notifier)

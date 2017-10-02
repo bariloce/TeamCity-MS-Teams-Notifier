@@ -12,7 +12,7 @@
 	<property name="reports" location="reports"/>
 	<property name="main-class" value="MSTeamsNotifier"/>
 	<!-- Default to 0.0.0.0 if no version specified -->
-	<condition property="version" value="${env.BUILD_NUMBER}" else="0.0.1">
+	<condition property="version" value="${env.BUILD_NUMBER}" else="1.0.5">
 		<and>
 			<isset property="env.BUILD_NUMBER"/>
 			<not>
@@ -29,7 +29,7 @@
 			</not>
 		</and>
 	</condition>
-	<property name="vendor" value="Tyler Evert"/>
+	<property name="vendor" value="Marek Barilla"/>
 	<!-- Determines whether to include a version etc. in the JAR's filename -->
 	<condition property="jar" value="${main-class}-${version}-${tag-type}" else="${main-class}">
 		<matches string="${env.MUST_VERSION_ARTIFACTS}" pattern="^-?true|yes|1$" casesensitive="false"/>
@@ -129,6 +129,7 @@
 			<classpath refid="classpath">
 			</classpath>
 			<xmlfileset dir="." includes="testng.xml"/>
+			<jvmarg value="-XX:-UseSplitVerifier" />
 			<jvmarg value="-Demma.coverage.out.file=${coverage.dir}/coverage.emma"/>
 			<jvmarg value="-Demma.coverage.out.merge=false"/>
 		</testng>

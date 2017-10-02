@@ -1,19 +1,3 @@
-/**
-Copyright 2016 Tyler Evert
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-  http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
- */
-
 package com.foxgang.teamcity.msTeams;
 
 import java.io.IOException;
@@ -142,7 +126,7 @@ public class MSTeamsServerExtension extends BuildServerAdapter {
 			MSTeamsMessageBundle bundle = this.eventMap.get(event);
 			String colour = bundle.getColour();
 			String message = renderTemplate(this.templates.readTemplate(event), new HashMap<String, Object>());
-			MSTeamsRoomNotification notification = new MSTeamsRoomNotification("Title TBD", message, colour);
+			MSTeamsRoomNotification notification = new MSTeamsRoomNotification(event.toString(), message, colour);
 			String roomId = this.configuration.getDefaultChannelUrl();
 			if ((event == TeamCityEvent.SERVER_STARTUP || event == TeamCityEvent.SERVER_SHUTDOWN) && 
 					this.configuration.getServerEventChannelUrl() != null) {
@@ -181,7 +165,7 @@ public class MSTeamsServerExtension extends BuildServerAdapter {
 				boolean notify = projectConfiguration.getNotifyStatus();
 				boolean enabled = projectConfiguration.getEnabled();
 				
-				MSTeamsRoomNotification notification = new MSTeamsRoomNotification("Title TBD", message, colour);
+				MSTeamsRoomNotification notification = new MSTeamsRoomNotification(event.toString(), message, colour);
 				
 				if (enabled) {
 					logger.debug(String.format("Channel to be notified: %s", channelUrl));

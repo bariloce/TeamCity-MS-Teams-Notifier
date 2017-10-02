@@ -1,2 +1,22 @@
+Version 1.0.5
+* update references
+* added built plugin to repo
+
+Version 1.0.4
+* small refactoring
+* fix minor issues
+
+Version 1.0.3
+* refactoring
+
+Version 1.0.2
+* fixed Emoticons
+
+Version 1.0.1
+* refactoring, build settings, tests
+
+Version 1.0.0
+* Adapted source from forked Hipchat plugin - working version of MSTeams plugin (https://github.com/tevert/TeamCity-MS-Teams-Notifier)
+
 Version 0.0.1
 * Adapted source from Hipchat plugin (https://github.com/parautenbach/TeamCity-HipChat-Notifier)

@@ -27,7 +27,6 @@ import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -38,17 +37,17 @@ import org.springframework.http.MediaType;
 
 public class MSTeamsApiProcessor {
 	private Properties systemProperties;
-	
+
 	private static Logger logger = Logger.getLogger("com.foxgang.teamcity.msTeams");
-	
+
 	public MSTeamsApiProcessor() throws URISyntaxException {
 		this(System.getProperties());
-	}	
-	
+	}
+
 	public MSTeamsApiProcessor(Properties systemProperties) throws URISyntaxException {
 		this.systemProperties = systemProperties;
 	}
-	
+
 	public void sendNotification(MSTeamsRoomNotification notification, String channelUrl) {
 		try {
 			// Serialize the notification to JSON
@@ -64,32 +63,23 @@ public class MSTeamsApiProcessor {
 			HttpResponse postResponse = client.execute(postRequest);
 			StatusLine status = postResponse.getStatusLine();
 			if (status.getStatusCode() != HttpStatus.SC_OK) {
-				logger.error(String.format("Message could not be delivered: %s %s", status.getStatusCode(), status.getReasonPhrase()));
+				logger.error(String.format("Message could not be delivered: %s %s", status.getStatusCode(),
+						status.getReasonPhrase()));
 			}
 		} catch (Exception e) {
 			logger.error("Could not post room notification", e);
 		}
 	}
-	
-	public boolean testCommunication(String url) { // TODO: this code is duplicate with the code in sendNotification
+
+	public boolean testCommunication(String url) {
 		try {
-			// Make request
-			HttpClient client = createClient();
-			HttpPost postRequest = new HttpPost(url);
-			postRequest.setEntity(new ByteArrayEntity("{\"text\": \"Hello World!\"}".getBytes()));
-			postRequest.addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON.toString());
-			HttpResponse postResponse = client.execute(postRequest);
-			StatusLine status = postResponse.getStatusLine();
-			if (status.getStatusCode() == HttpStatus.SC_OK) {
-				return true;
-			} else {
-				logger.error(String.format("Test message failed: %s %s", status.getStatusCode(), status.getReasonPhrase()));
-			}
+			MSTeamsRoomNotification notification = new MSTeamsRoomNotification("Title", "Hello world!", MSTeamsMessageColour.INFO);
+			sendNotification(notification, url);
+			return true;			
 		} catch (Exception e) {
 			logger.error("Request failed", e);
 		}
-		
-		return false;		
+		return false;
 	}
 
 	private CloseableHttpClient createClient() {
@@ -111,4 +101,7 @@ public class MSTeamsApiProcessor {
 		return httpClientBuilder.build();
 	}
 
+	public MSTeamsEmoticons getEmoticons(int startIndex) {
+		return null;
+	}
 }
