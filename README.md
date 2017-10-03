@@ -38,6 +38,10 @@ Roadmap TODO
 
 # Change log
 
+## Version 1.0.6
+* fix references and export settings
+* updated testng settings
+
 ## Version 1.0.5
 * update references
 * added built plugin to repo
