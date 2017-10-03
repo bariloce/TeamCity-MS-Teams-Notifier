@@ -16,8 +16,8 @@ limitations under the License.
 
 package com.foxgang.teamcity.msTeams;
 
-public class MSTeamsMessageColour {
-
+public class MSTeamsMessageColour 
+{
 	public static final String WARNING = "E0E809";
 	public static final String ERROR = "E50909";
 	public static final String SUCCESS = "48A555";

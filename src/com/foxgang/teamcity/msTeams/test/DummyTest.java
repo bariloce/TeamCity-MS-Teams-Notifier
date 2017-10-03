@@ -40,5 +40,4 @@ public class DummyTest {
 		MSTeamsApiResponseLinks responseLinks = new MSTeamsApiResponseLinks();
 		responseLinks.handleUnknown("foo", "bar");
 	}
-
 }

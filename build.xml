@@ -12,7 +12,7 @@
 	<property name="reports" location="reports"/>
 	<property name="main-class" value="MSTeamsNotifier"/>
 	<!-- Default to 0.0.0.0 if no version specified -->
-	<condition property="version" value="${env.BUILD_NUMBER}" else="1.0.5">
+	<condition property="version" value="${env.BUILD_NUMBER}" else="1.0.6">
 		<and>
 			<isset property="env.BUILD_NUMBER"/>
 			<not>
@@ -35,8 +35,6 @@
 		<matches string="${env.MUST_VERSION_ARTIFACTS}" pattern="^-?true|yes|1$" casesensitive="false"/>
 	</condition>
 	<property name="lib" value="lib"/>
-    <property name="teamcity.home" location="C:/TeamCity"/>
-    <property name="teamcity.appdir" location="${teamcity.home}/webapps/ROOT/WEB-INF"/>
 	<property name="junit.home" value="lib/junit"/>
 	<property name="manifest" value="MANIFEST.MF"/>
 	<property name="plugin.xml" value="teamcity-plugin.xml"/>
@@ -46,14 +44,10 @@
 	<property name="testng.dir" value="testng" />
 	
 	<path id="classpath">
-		<fileset dir="${lib}">
+		<fileset dir="${lib}">			
 			<include name="**/*.jar"/>
 		</fileset>
 		<pathelement location="${classes}"/>
-        <pathelement location="${teamcity.appdir}/classes"/>
-		<fileset dir="${teamcity.home}/lib" includes="*.jar"/>
-		<fileset dir="${teamcity.home}/devPackage/tests" includes="*.jar"/>
-        <fileset dir="${teamcity.appdir}/lib" includes="*.jar" excludes="${main-class}*.jar"/>
 	</path>
 
 	<manifestclasspath property="manifest.classpath" jarfile="${jar}.jar" maxParentLevels="7">
@@ -129,7 +123,7 @@
 			<classpath refid="classpath">
 			</classpath>
 			<xmlfileset dir="." includes="testng.xml"/>
-			<jvmarg value="-XX:-UseSplitVerifier" />
+			<jvmarg value="-noverify"/>
 			<jvmarg value="-Demma.coverage.out.file=${coverage.dir}/coverage.emma"/>
 			<jvmarg value="-Demma.coverage.out.merge=false"/>
 		</testng>
@@ -158,6 +152,8 @@
 		<copy todir="${build}/server/${lib}">
 		    <fileset dir="${lib}" includes="**">
 		    	<exclude name="test/**"/>
+		    	<exclude name="Teamcity/**"/>
+		    	<exclude name="log4J-1.2.17/**"/>
 			</fileset>
 		</copy>
 		<zip basedir="${build}" destfile="${jar}.zip" includes="server/${jar}.jar,${plugin.xml},server/${lib}/**"/>
